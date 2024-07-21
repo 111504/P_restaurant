@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navigation Bar Example</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Roboto", "Noto Serif TC", "Microsoft JhengHei", serif;
+      }
+      header {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        z-index: 50;
+        height: 150px;
+        transition: all 0.8s;
+      }
+
+      .outerWrap {
+        background: url(../assets/img/bg.png) center top/100% repeat;
+        max-width: 1920px;
+        margin: 0 auto;
+        position: relative;
+        overflow-x: hidden;
+      }
+      .container {
+        max-width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        height: 100%;
+      }
+      .logo {
+        height: 100px;
+        position: absolute;
+        top: 0;
+        left: 10px;
+        border-radius: 0 20px 20px 0;
+      }
+      nav {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+      }
+      nav ul li {
+        margin-left: 20px;
+      }
+      nav ul li a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 17px;
+        line-height: 20px;
+        padding: 0 10px;
+        font-weight: 600;
+      }
+      nav ul li a:hover {
+        text-decoration: underline;
+      }
+
+      .bannerArea {
+        background-color: #000000;
+      }
+      .bannerBox {
+        width: 100%;
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 49;
+      }
+      .bannerBox img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* 确保图像覆盖整个容器 */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outerWrap">
+      <header>
+        <div class="container">
+          <a href="#">
+            <img class="logo" alt="Logo" src="./assets/img/icon.jpg" />
+          </a>
+          <nav>
+            <ul>
+              <li><a href="#">關於我們</a></li>
+              <li><a href="#">最新消息</a></li>
+              <li><a href="#">客房介紹</a></li>
+              <li><a href="#">周邊景點</a></li>
+              <li><a href="#">訂房連結</a></li>
+              <li><a href="#">人才招募</a></li>
+              <li><a href="#">聯絡我們</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <div class="bannerArea">
+        <div class="bannerBox">
+          <img alt="旅館圖片" src="./assets/img/bg-2.png" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

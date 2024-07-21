@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>當天訂單和預訂情況</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 120px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #ff9800;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <a href="#">餐廳管理系統</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">總覽</a></li>
+                    <li><a href="orders.html">訂單情況</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>當天訂單和預訂情況</h1>
+        <h2>今日訂單</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>訂單號</th>
+                    <th>顧客名稱</th>
+                    <th>菜品</th>
+                    <th>總額（元）</th>
+                    <th>狀態</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>001</td>
+                    <td>王小明</td>
+                    <td>麻婆豆腐</td>
+                    <td>50</td>
+                    <td>已完成</td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>李小華</td>
+                    <td>魚香肉絲</td>
+                    <td>45</td>
+                    <td>已完成</td>
+                </tr>
+                <!-- 更多訂單 -->
+            </tbody>
+        </table>
+
+        <h2>今日預訂</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>預訂號</th>
+                    <th>顧客名稱</th>
+                    <th>預訂時間</th>
+                    <th>人數</th>
+                    <th>狀態</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>101</td>
+                    <td>張大力</td>
+                    <td>18:00</td>
+                    <td>4</td>
+                    <td>已確認</td>
+                </tr>
+                <tr>
+                    <td>102</td>
+                    <td>陳小美</td>
+                    <td>19:00</td>
+                    <td>2</td>
+                    <td>已確認</td>
+                </tr>
+                <!-- 更多預訂 -->
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

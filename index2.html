@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>餐廳網站</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/header.css" />
+    <style>
+      .slider {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        max-height: 500px;
+      }
+      .slides {
+        display: flex;
+        transition: transform 1s ease;
+        width: 100%;
+      }
+      .slide {
+        min-width: 100%;
+        box-sizing: border-box;
+      }
+      .slide img {
+        width: 100%;
+        vertical-align: top;
+      }
+      .slider-controls {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+      }
+      .slider-controls button {
+        background-color: rgba(0, 0, 0, 0.5);
+        border: none;
+        color: white;
+        padding: 10px;
+        cursor: pointer;
+      }
+      .marquee {
+        overflow: hidden;
+        white-space: nowrap;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 20px 0;
+        background-color: #f4f4f4;
+      }
+      .marquee-content {
+        display: inline-block;
+        padding-left: 100%;
+        animation: marquee 15s linear infinite;
+      }
+      .marquee-content img {
+        width: 200px;
+        height: auto;
+        margin: 0 10px;
+        vertical-align: middle;
+      }
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-100%);
+        }
+      }
+      .content-section {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin: 20px 0;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 1s, transform 1s;
+      }
+      .content-section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .content-block {
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+        margin: 10px 0;
+        background-color: #f0f0f0;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+      .content-block img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+      .content-text {
+        padding: 20px;
+        background-color: #ccc;
+      }
+      .content-buttons {
+        display: flex;
+        justify-content: space-around;
+        padding: 10px;
+        background-color: #fff;
+      }
+      .content-buttons button {
+        padding: 10px 20px;
+        border: none;
+        color: white;
+        cursor: pointer;
+      }
+      .button-orange {
+        background-color: #ffa500;
+      }
+      .button-blue {
+        background-color: #1e90ff;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="header">
+      <div class="container">
+        <div class="logo">
+          <a href="#">主頁</a>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#">首頁</a></li>
+            <li><a href="#">關於我們</a></li>
+            <li><a href="#">訂餐服務</a></li>
+            <li><a href="#">管理登入</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main id="main">
+      <div class="slider" id="slider">
+        <div class="slides" id="slides">
+          <div class="slide">
+            <img
+              src="https://via.placeholder.com/1500x500?text=Food+Image+1"
+              alt="Food Image 1"
+            />
+          </div>
+          <div class="slide">
+            <img
+              src="https://via.placeholder.com/1500x500?text=Food+Image+2"
+              alt="Food Image 2"
+            />
+          </div>
+          <div class="slide">
+            <img
+              src="https://via.placeholder.com/1500x500?text=Food+Image+3"
+              alt="Food Image 3"
+            />
+          </div>
+        </div>
+        <div class="slider-controls">
+          <button id="prevBtn">&lt;</button>
+          <button id="nextBtn">&gt;</button>
+        </div>
+      </div>
+      <h1>歡迎來到我的網站！</h1>
+      <p>這是範例內容。</p>
+
+      <div class="marquee">
+        <div class="marquee-content">
+          <img
+            src="https://via.placeholder.com/200x150?text=Food+1"
+            alt="Food 1"
+          />
+          <img
+            src="https://via.placeholder.com/200x150?text=Food+2"
+            alt="Food 2"
+          />
+          <img
+            src="https://via.placeholder.com/200x150?text=Food+3"
+            alt="Food 3"
+          />
+          <img
+            src="https://via.placeholder.com/200x150?text=Food+4"
+            alt="Food 4"
+          />
+          <img
+            src="https://via.placeholder.com/200x150?text=Food+5"
+            alt="Food 5"
+          />
+          <img
+            src="https://via.placeholder.com/200x150?text=Food+6"
+            alt="Food 6"
+          />
+        </div>
+      </div>
+
+      <div class="content-section" id="content-section">
+        <div class="content-block">
+          <img
+            src="https://via.placeholder.com/400x300?text=Food+Image+A"
+            alt="Food Image A"
+          />
+          <div class="content-text">
+            <h3>Food Item A</h3>
+            <p>Description of Food Item A.</p>
+          </div>
+          <div class="content-buttons">
+            <button class="button-orange">橘色按鈕</button>
+            <button class="button-blue">藍色按鈕</button>
+          </div>
+        </div>
+        <div class="content-block">
+          <img
+            src="https://via.placeholder.com/400x300?text=Food+Image+B"
+            alt="Food Image B"
+          />
+          <div class="content-text">
+            <h3>Food Item B</h3>
+            <p>Description of Food Item B.</p>
+          </div>
+          <div class="content-buttons">
+            <button class="button-orange">橘色按鈕</button>
+            <button class="button-blue">藍色按鈕</button>
+          </div>
+        </div>
+        <div class="content-block">
+          <img
+            src="https://via.placeholder.com/400x300?text=Food+Image+C"
+            alt="Food Image C"
+          />
+          <div class="content-text">
+            <h3>Food Item C</h3>
+            <p>Description of Food Item C.</p>
+          </div>
+          <div class="content-buttons">
+            <button class="button-orange">橘色按鈕</button>
+            <button class="button-blue">藍色按鈕</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="height: 2000px"></div>
+    </main>
+    <script>
+      let currentSlide = 0;
+      const slides = document.getElementById("slides");
+      const totalSlides = document.querySelectorAll(".slide").length;
+
+      document.getElementById("nextBtn").addEventListener("click", () => {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateSlidePosition();
+      });
+
+      document.getElementById("prevBtn").addEventListener("click", () => {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateSlidePosition();
+      });
+
+      function updateSlidePosition() {
+        slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+      }
+
+      // 自动播放
+      setInterval(() => {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateSlidePosition();
+      }, 3000);
+
+      // 滚动事件监听
+      window.addEventListener("scroll", () => {
+        const contentSection = document.getElementById("content-section");
+        const scrollPosition = window.scrollY || window.pageYOffset;
+        const revealPosition = 600; // 设置滚动触发的位置
+
+        if (scrollPosition >= revealPosition) {
+          contentSection.classList.add("visible");
+        }
+      });
+    </script>
+  </body>
+</html>

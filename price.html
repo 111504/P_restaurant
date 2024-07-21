@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>總覽餐廳營業數據</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 120px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .data-overview {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .data-card {
+            background-color: #ff9800;
+            color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 30%;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .data-card:hover {
+            transform: scale(1.05);
+        }
+
+        .data-card h2 {
+            margin: 0;
+            font-size: 48px;
+        }
+
+        .data-card p {
+            margin: 10px 0 0;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <a href="#">餐廳管理系統</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">總覽</a></li>
+                    <li><a href="orders.html">訂單情況</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>總覽餐廳營業數據</h1>
+        <div class="data-overview">
+            <div class="data-card">
+                <h2>250</h2>
+                <p>今日營業額（元）</p>
+            </div>
+            <div class="data-card">
+                <h2>150</h2>
+                <p>今日訂單數</p>
+            </div>
+            <div class="data-card">
+                <h2>20</h2>
+                <p>今日預訂數</p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

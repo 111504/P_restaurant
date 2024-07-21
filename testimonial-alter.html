@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonial Alternative</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .testimonial-container {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 90%;
+            border: 1px solid #ccc;
+        }
+        .testimonial-image {
+            flex: 0 0 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #888;
+            margin-right: 20px;
+            overflow: hidden;
+        }
+        .testimonial-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .testimonial-text {
+            flex: 1;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+            overflow: hidden;
+            position: relative;
+        }
+        .testimonial-text span {
+            display: inline-block;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+        .cursor {
+            position: absolute;
+            height: 1em;
+            width: 2px;
+            background-color: #333;
+            animation: blink 2s infinite;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes blink {
+            0%, 50%, 100% {
+                opacity: 1;
+            }
+            25%, 75% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="testimonial-container">
+        <div class="testimonial-image">
+            <img src="https://via.placeholder.com/100" alt="Person">
+        </div>
+        <div class="testimonial-text" id="testimonial-text"></div>
+    </div>
+
+    <script>
+        const text = "這是用戶的一段評價，會一段一段跑出來。每段文字都會有一點點延遲，讓效果更加顯著。";
+        const testimonialTextElement = document.getElementById('testimonial-text');
+        const cursor = document.createElement('div');
+        cursor.classList.add('cursor');
+        testimonialTextElement.appendChild(cursor);
+
+        function getRandomDelay(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        function displayText(text, element) {
+            const segments = text.split(/(，|。)/);
+            let totalDelay = 0;
+
+            segments.forEach((segment, index) => {
+                const delay = segment === '，' || segment === '。' ? 0.3 : getRandomDelay(0.05, 0.15);
+                const words = segment.split('');
+
+                words.forEach((word, wordIndex) => {
+                    const span = document.createElement('span');
+                    span.textContent = word;
+                    span.style.animationDelay = `${totalDelay}s`;
+                    element.appendChild(span);
+                    totalDelay += delay;
+                });
+            });
+
+            element.appendChild(cursor);
+        }
+
+        displayText(text, testimonialTextElement);
+
+        function updateCursorPosition() {
+            const spans = testimonialTextElement.querySelectorAll('span');
+            let lastVisibleSpan = null;
+            spans.forEach(span => {
+                if (window.getComputedStyle(span).opacity === '1') {
+                    lastVisibleSpan = span;
+                }
+            });
+
+            if (lastVisibleSpan) {
+                const { right } = lastVisibleSpan.getBoundingClientRect();
+                const containerLeft = testimonialTextElement.getBoundingClientRect().left;
+                cursor.style.left = `${right - containerLeft}px`;
+            } else {
+                cursor.style.left = '0';
+            }
+        }
+
+        setInterval(updateCursorPosition, 100);
+    </script>
+</body>
+</html>

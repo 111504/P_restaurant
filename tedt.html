@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas 撲克牌範例</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cardCanvas" width="800" height="600"></canvas>
+    <script>
+        const canvas = document.getElementById('cardCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // 卡片數據
+        const cards = [
+            { x: 50, y: 50, width: 100, height: 150, faceUp: false },
+            { x: 200, y: 50, width: 100, height: 150, faceUp: false },
+            { x: 350, y: 50, width: 100, height: 150, faceUp: false }
+        ];
+
+        // 繪製卡片
+        function drawCard(card) {
+            ctx.fillStyle = card.faceUp ? 'white' : 'blue';
+            ctx.fillRect(card.x, card.y, card.width, card.height);
+            ctx.strokeRect(card.x, card.y, card.width, card.height);
+            
+            if (card.faceUp) {
+                ctx.fillStyle = 'black';
+                ctx.font = '20px Arial';
+                ctx.fillText('A', card.x + 40, card.y + 80);
+            }
+        }
+
+        // 繪製所有卡片
+        function drawCards() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            cards.forEach(drawCard);
+        }
+
+        // 檢查卡片是否被點擊
+        function isCardClicked(card, mouseX, mouseY) {
+            return mouseX > card.x && mouseX < card.x + card.width && mouseY > card.y && mouseY < card.y + card.height;
+        }
+
+        // 處理卡片翻轉
+        function handleCardFlip(event) {
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = event.clientX - rect.left;
+            const mouseY = event.clientY - rect.top;
+
+            cards.forEach(card => {
+                if (isCardClicked(card, mouseX, mouseY)) {
+                    card.faceUp = !card.faceUp;
+                }
+            });
+
+            drawCards();
+        }
+
+        canvas.addEventListener('click', handleCardFlip);
+
+        // 初始化
+        drawCards();
+    </script>
+</body>
+</html>

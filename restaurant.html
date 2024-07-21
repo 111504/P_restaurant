@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>訂餐頁面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .menu-item .item-image {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 15px;
+            background-color: #ccc;
+            border-radius: 10px;
+        }
+        .menu-item .item-description {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .menu-item input[type="number"] {
+            width: 70px;
+            padding: 5px;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+        .menu-item button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .order-button {
+            display: block;
+            margin: 30px auto;
+            padding: 15px 30px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>選擇餐點訂餐</h1>
+    <div class="menu">
+        <div class="menu-item">
+            <div class="item-image" style="background-color: #ff9999;"></div>
+            <div class="item-description">餐點1</div>
+            <input type="number" min="1" placeholder="數量">
+            <button onclick="addToCart('餐點1', this)">加入購物車</button>
+        </div>
+        <div class="menu-item">
+            <div class="item-image" style="background-color: #99ff99;"></div>
+            <div class="item-description">餐點2</div>
+            <input type="number" min="1" placeholder="數量">
+            <button onclick="addToCart('餐點2', this)">加入購物車</button>
+        </div>
+        <div class="menu-item">
+            <div class="item-image" style="background-color: #9999ff;"></div>
+            <div class="item-description">餐點3</div>
+            <input type="number" min="1" placeholder="數量">
+            <button onclick="addToCart('餐點3', this)">加入購物車</button>
+        </div>
+        <!-- 添加更多餐點項目 -->
+        <div class="menu-item">
+            <div class="item-image" style="background-color: #ffcc99;"></div>
+            <div class="item-description">餐點4</div>
+            <input type="number" min="1" placeholder="數量">
+            <button onclick="addToCart('餐點4', this)">加入購物車</button>
+        </div>
+        <div class="menu-item">
+            <div class="item-image" style="background-color: #ccff99;"></div>
+            <div class="item-description">餐點5</div>
+            <input type="number" min="1" placeholder="數量">
+            <button onclick="addToCart('餐點5', this)">加入購物車</button>
+        </div>
+        <div class="menu-item">
+            <div class="item-image" style="background-color: #99ccff;"></div>
+            <div class="item-description">餐點6</div>
+            <input type="number" min="1" placeholder="數量">
+            <button onclick="addToCart('餐點6', this)">加入購物車</button>
+        </div>
+        <!-- 繼續添加餐點項目... -->
+    </div>
+    <button class="order-button" onclick="placeOrder()">提交訂單</button>
+
+    <script>
+        let cart = [];
+
+        function addToCart(itemName, button) {
+            const quantity = button.previousElementSibling.value;
+            if (quantity) {
+                cart.push({ name: itemName, quantity });
+                alert(`${itemName} 已加入購物車，數量: ${quantity}`);
+            } else {
+                alert('請輸入數量');
+            }
+        }
+
+        function placeOrder() {
+            if (cart.length === 0) {
+                alert('購物車是空的');
+                return;
+            }
+            console.log('Order:', cart);
+            alert('訂單已提交！');
+            cart = [];
+        }
+    </script>
+</body>
+</html>

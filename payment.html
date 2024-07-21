@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>付款页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden; /* 防止页面横向滚动 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-color: #ddd;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+        .progress-bar div {
+            width: 33.33%;
+            height: 10px;
+            background-color: #007bff;
+            position: relative;
+            z-index: 2;
+        }
+        .progress-bar .inactive {
+            background-color: #ddd;
+        }
+        .progress-bar div::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -10px;
+            width: 20px;
+            height: 20px;
+            background-color: #007bff;
+            border-radius: 50%;
+            transform: translateY(-50%);
+            z-index: 3;
+        }
+        .progress-bar .inactive::after {
+            background-color: #ddd;
+        }
+        .order-summary, .order-form, .order-confirmation {
+            max-width: 600px;
+            width: 80%;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            position: absolute;
+            top: 100px;
+        }
+        .order-summary, .order-form, .order-confirmation {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .order-summary {
+            transform: translateX(0);
+            opacity: 1;
+            visibility: visible;
+        }
+        .order-form {
+            transform: translateX(100%);
+        }
+        .order-confirmation {
+            transform: translateX(200%);
+        }
+        .order-summary h1, .order-form h1, .order-confirmation h1 {
+            margin-top: 0;
+        }
+        .order-summary ul, .order-confirmation ul {
+            list-style: none;
+            padding: 0;
+        }
+        .order-summary ul li, .order-form ul li, .order-confirmation ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .order-summary ul li:last-child, .order-form ul li:last-child, .order-confirmation ul li:last-child {
+            border-bottom: none;
+        }
+        .confirm-button, .submit-button, .back-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .back-button {
+            background-color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar">
+        <div class="active"></div>
+        <div class="inactive"></div>
+        <div class="inactive"></div>
+    </div>
+    <div class="order-summary" id="order-summary">
+        <h1>订单摘要</h1>
+        <ul id="order-items">
+            <!-- 订单项目将在这里显示 -->
+        </ul>
+        <button class="confirm-button" onclick="confirmOrder()">确认订单</button>
+    </div>
+    <div class="order-form" id="order-form">
+        <h1>填写地址</h1>
+        <form id="checkout-form">
+            <ul>
+                <li>
+                    <label for="name">姓名:</label>
+                    <input type="text" id="name" name="name" required>
+                </li>
+                <li>
+                    <label for="address">地址:</label>
+                    <input type="text" id="address" name="address" required>
+                </li>
+                <!-- 可以添加更多的表单字段 -->
+            </ul>
+            <button type="button" class="back-button" onclick="goBack()">上一步</button>
+            <button type="submit" class="submit-button">提交订单</button>
+        </form>
+    </div>
+    <div class="order-confirmation" id="order-confirmation">
+        <h1>成功定位</h1>
+        <ul id="confirmation-items">
+            <!-- 确认项目将在这里显示 -->
+        </ul>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const orderItems = document.getElementById('order-items');
+            const confirmationItems = document.getElementById('confirmation-items');
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            if (cart.length === 0) {
+                orderItems.innerHTML = '<li>购物车是空的</li>';
+                confirmationItems.innerHTML = '<li>购物车是空的</li>';
+            } else {
+                cart.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = `${item.name}: ${item.quantity}`;
+                    orderItems.appendChild(li);
+                    const liConfirmation = li.cloneNode(true);
+                    confirmationItems.appendChild(liConfirmation);
+                });
+            }
+
+            document.getElementById('checkout-form').addEventListener('submit', (event) => {
+                event.preventDefault();
+                // 在这里可以处理提交订单的逻辑，例如发送到服务器
+                alert('订单已提交！');
+                showConfirmation();
+            });
+        });
+
+        function confirmOrder() {
+            const orderSummary = document.getElementById('order-summary');
+            const orderForm = document.getElementById('order-form');
+            
+            orderSummary.style.transform = 'translateX(-100%)';
+            orderSummary.style.opacity = '0';
+            orderSummary.style.visibility = 'hidden';
+            orderForm.style.transform = 'translateX(0)';
+            orderForm.style.opacity = '1';
+            orderForm.style.visibility = 'visible';
+            
+            document.querySelector('.progress-bar div:nth-child(2)').classList.remove('inactive');
+        }
+
+        function goBack() {
+            const orderSummary = document.getElementById('order-summary');
+            const orderForm = document.getElementById('order-form');
+            
+            orderSummary.style.transform = 'translateX(0)';
+            orderSummary.style.opacity = '1';
+            orderSummary.style.visibility = 'visible';
+            orderForm.style.transform = 'translateX(100%)';
+            orderForm.style.opacity = '0';
+            orderForm.style.visibility = 'hidden';
+            
+            document.querySelector('.progress-bar div:nth-child(2)').classList.add('inactive');
+        }
+
+        function showConfirmation() {
+            const orderForm = document.getElementById('order-form');
+            const orderConfirmation = document.getElementById('order-confirmation');
+            
+            orderForm.style.transform = 'translateX(-100%)';
+            orderForm.style.opacity = '0';
+            orderForm.style.visibility = 'hidden';
+            orderConfirmation.style.transform = 'translateX(0)';
+            orderConfirmation.style.opacity = '1';
+            orderConfirmation.style.visibility = 'visible';
+            
+            document.querySelector('.progress-bar div:nth-child(3)').classList.remove('inactive');
+        }
+    </script>
+</body>
+</html>

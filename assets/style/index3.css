@@ -1,0 +1,61 @@
+html {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  background-color: aliceblue;
+  box-sizing: border-box;
+}
+
+/*  .title span:nth-child(1)::before {
+    content: "雲"; 
+  }
+  .title span:nth-child(2)::before {
+    content: "水"; 
+  .title span:nth-child(3)::before {
+    content: "閤"; 
+  }
+  .title span:nth-child(4)::before {
+    content: "中"; */
+
+.textbox .title span::before {
+  content: "水";
+}
+.title {
+  border: 1px black solid;
+}
+.textbox .title {
+  writing-mode: vertical-rl;
+}
+
+.textbox .title span {
+  display: inline-block;
+  padding: 20px;
+}
+
+.t1 {
+  display: inline-block;
+  border: 1px black solid;
+}
+.text-block-p {
+  width: 100%;
+  border: 1px solid rgb(236, 18, 18);
+}
+.text-block {
+  display: inline-block;
+  text-align: left; /* 使文字靠左對齊 */
+  width: 200px; /* 或其他指定寬度 */
+  height: auto;
+  border: 1px solid black; /* 看到邊界方便調整，可以移除 */
+  padding: 10px 50px 10px 10px;
+  writing-mode: vertical-lr;
+  /* 文字和邊界的間距 */
+  font-size: 24px;
+}
+/* .title span {
+  display: inline-block;
+} */
+
+/* .textbox2.title span::before {
+  content: "共";
+} */
