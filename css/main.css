@@ -1,0 +1,23 @@
+:root {
+  --header-height: auto;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Microsoft JhengHei", sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: orange;
+}
+
+/* 
+    瀏覽器預設字體是16px 
+    62.5% 代表1rem 為10px   
+    */
+html {
+  font-size: 62.5%;
+}

@@ -1,0 +1,5 @@
+main {
+  padding: 30px;
+  transition: margin-top 0.5s;
+  margin-top: calc(var(--header-height));
+}
