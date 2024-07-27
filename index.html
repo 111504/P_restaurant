@@ -1,41 +1,248 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta
       http-equiv="Cache-Control"
       content="no-cache, no-store, must-revalidate"
     />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-    <title>範例網站</title>
-    <link rel="stylesheet" href="css/mainPage.css" />
-    <link rel="stylesheet" href="css/header.css" />
-    <link rel="stylesheet" href="css/common.css" />
-  </head>
-  <body>
-    <div class="outerWrap">
-      <header>
-        <div class="wrap">
-          <nav class="menuBox">
-            <ul class="menu">
-              <li class="menuItem">
-                <a class="mainLink">"關於我們"</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-    </div>
-    <!-- <main id="main">
-    
-      <section class="section-hero">
-        <img alt="主頁照片" src="./assets/img/mainPagePic.jpg">  
-      <section/>
-      <div style="height: 2000px"></div>
-    </main> -->
+    <title>Navigation Bar Example</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Roboto", "Noto Serif TC", "Microsoft JhengHei", serif;
+        }
+        header {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            z-index: 50;
+            height: 130px;
+            transition: all 0.8s;
+        }
+        .header-scrolled {
+            background-color: rgba(88, 141, 88, 0.7); /* 半透明绿色 */
+            opacity: 1;
+            height: 100px;
+        }
+        .outerWrap {
+            background: url(../assets/img/bg.png) center top/100% repeat;
+            max-width: 1920px;
+            margin: 0 auto;
+            position: relative;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            height: 100%;
+        }
+        .logo {
+            height: 130px;
+            transition: height 0.8s;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 0 0 20px 0;
+        }
+        .logo-scrolled {
+            height: 100px; /* 根据需要调整缩小后的高度 */
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            margin-left: 20px;
+        }
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 17px;
+            line-height: 20px;
+            padding: 0 10px;
+            font-weight: 600;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        .bannerArea {
+            background-color: #000000;
+        }
+        .bannerBox {
+            width: 100%;
+            position: relative;
+            z-index: 49;
+        }
+        .bannerBox img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 确保图像覆盖整个容器 */
+            transition: transform 3s ease, filter 3s ease; /* 平滑过渡效果 */
+        }
 
-    <script src="./js/calcHeader.js"></script>
-  </body>
+        .bannerBox img.animate {
+            transform: scale(1.2); /* 放大效果 */
+            filter: blur(2px); /* 模糊效果 */
+        }
+        .titleBox {
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ffffff;
+            z-index: 60;
+            background-color: rgba(0, 0, 0, 0.6); /* 半透明背景色 */
+            /* padding: 5px; */
+            /* border-radius: 10px; */
+            text-align: center;
+            border: 1px rgba(255, 255, 255, 0.674) solid;
+        }
+        .title {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+           
+        }
+        .textSpilt {
+          font-size: 36px;
+          line-height: 1.2;
+          border: 1px rgba(243, 241, 241, 0.5) solid;
+          margin: 10px;
+        }
+      
+        .textSpilt::before {
+            content: attr(data-text);
+            display: inline-block;
+            text-align: center;
+            padding: 5px;
+           
+          
+           
+        }
+
+        .textSpilt:hover::before {
+            background-color: rgba(243, 241, 241, 0.5);
+            border-color: rgba(243, 241, 241, 1);
+            transform: scale(1.1); /* 放大效果 */
+            transition: all 0.8s; /* 平滑过渡效果 */
+          }
+       
+          .Txt{
+          max-width: 1200px;
+          height: 100%;
+          margin: auto;
+          position: absolute;
+          top:0;
+          left:0;
+          right:0;
+          bottom: 0;
+          background-color: rgba(159, 186, 176,0.8);
+          opacity: 0.8;
+        
+
+          }
+          .Txt::before{
+            content: "";
+            display: block;
+            height: 2px;
+            background-color: #000000;
+            position: absolute;
+            top:35%;
+            left: 0;
+            /* right:0; */
+            width: 45%;
+           
+                    
+          }
+          .Txt::after{
+            content: "";
+            display: block;
+            height: 2px;
+            background-color: #000000;
+            position: absolute;
+            top:35%;
+            /* left: 0; */
+            right:0;
+            width: 45%;
+           
+                    
+          }
+    </style>
+</head>
+<body>
+    <div class="outerWrap">
+        <header id="header">
+            <div class="container">
+                <a href="#">
+                    <img class="logo" id="logo" alt="Logo" src="./assets/img/icon.jpg">
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="#">關於我們</a></li>
+                        <li><a href="#">最新消息</a></li>
+                        <li><a href="#">客房介紹</a></li>
+                        <li><a href="#">周邊景點</a></li>
+                        <li><a href="#">訂房連結</a></li>
+                        <li><a href="#">人才招募</a></li>
+                        <li><a href="#">聯絡我們</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <div class="bannerArea">
+            <div class="bannerBox">
+                <img id="bannerImage" alt="旅館圖片" src="./assets/img/bg-2.png">
+                <div class="titleBox">
+                    <div class="title">
+                        <div class="textSpilt" data-text="春"></div>
+                        <div class="textSpilt" data-text="水"></div>
+                        <div class="textSpilt" data-text="逸"></div>
+                        <div class="textSpilt" data-text="居"></div>
+                    </div>
+                </div>
+                <div class="Txt">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+        <div style="height: 2000px;"></div>
+    </div>
+    <script>
+        window.addEventListener('scroll', function() {
+            var header = document.getElementById('header');
+            var logo = document.getElementById('logo');
+            if (window.scrollY > 120) {
+                header.classList.add('header-scrolled');
+                logo.classList.add('logo-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+                logo.classList.remove('logo-scrolled');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const bannerImage = document.getElementById('bannerImage');
+            setTimeout(() => {
+                bannerImage.classList.add('animate');
+            }, 100); // 延迟0.1秒后开始动画
+        })
+    </script>
+</body>
 </html>
